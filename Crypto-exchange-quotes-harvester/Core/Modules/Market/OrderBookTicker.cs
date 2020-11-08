@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+namespace Core.Modules.Market
+{
+    public class OrderBookTicker
+    {
+        [JsonProperty("symbol")]
+        public string Symbol { get; set; }
+        [JsonProperty("bidPrice")]
+        public decimal BidPrice { get; set; }
+        [JsonProperty("bidQty")]
+        public decimal BidQuantity { get; set; }
+        [JsonProperty("askPrice")]
+        public decimal AskPrice { get; set; }
+        [JsonProperty("askQty")]
+        public decimal AskQuantity { get; set; }
+    }
+}
