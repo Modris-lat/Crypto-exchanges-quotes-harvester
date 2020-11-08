@@ -49,13 +49,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Binance\BinanceTest.cs" />
+    <Compile Include="BinanceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Binance\" />
     <Folder Include="Poloniex\" />
   </ItemGroup>
   <ItemGroup>
