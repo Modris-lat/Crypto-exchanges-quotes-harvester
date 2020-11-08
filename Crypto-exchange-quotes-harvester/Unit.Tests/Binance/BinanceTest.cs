@@ -22,6 +22,11 @@ namespace Unit.Tests.Binance
             apiClient = new ApiClient(keys.ApiKey, keys.ApiSecretKey);
             binanceClient = new BinanceClient(apiClient);
         }
+        [TestMethod]
+        public async Task GetServerTime()
+        {
+            var serverTime = await binanceClient.TestConnectivity();
+        }
 
         [TestMethod]
         public async Task GetOrderBookTicker()
