@@ -1,13 +1,14 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
+using System.Threading.Tasks;
 using Binance.API.Client;
 using Core;
 using Core.Interfaces;
 using Core.Modules.Enums;
 using Core.Modules.WebSockets;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Binance.API.Csharp.Client.Test
+namespace Unit.Tests.Binance
 {
     [TestClass]
     public class BinanceTest
@@ -23,30 +24,34 @@ namespace Binance.API.Csharp.Client.Test
         }
 
         [TestMethod]
-        public void GetOrderBookTicker()
+        public async Task GetOrderBookTicker()
         {
-            var orderBookTickers = binanceClient.GetOrderBookTicker().Result;
+            var orderBookTickers = await binanceClient.GetOrderBookTicker();
+            Assert.IsTrue(orderBookTickers.Any());
         }
 
         [TestMethod]
-        public void StartUserStream()
+        public async Task StartUserStream()
         {
-            var listenKey = binanceClient.StartUserStream().Result.ListenKey;
+            var userStreamInfo = await binanceClient.StartUserStream();
+            var listenKey = userStreamInfo.ListenKey;
+            Assert.IsTrue(!string.IsNullOrEmpty(listenKey));
         }
 
         [TestMethod]
-        public void KeepAliveUserStream()
+        public async Task KeepAliveUserStream()
         {
-            var listenKey = binanceClient.StartUserStream().Result.ListenKey;
-            var ping = binanceClient.KeepAliveUserStream(listenKey).Result;
+            var userStreamInfo = await binanceClient.StartUserStream();
+            var listenKey = userStreamInfo.ListenKey;
+            var ping = await binanceClient.KeepAliveUserStream(listenKey);
         }
 
         [TestMethod]
-        public void CloseUserStream()
+        public async Task CloseUserStream()
         {
-            var listenKey = binanceClient.StartUserStream().Result.ListenKey;
-            var ping = binanceClient.KeepAliveUserStream(listenKey).Result;
-            var resut = binanceClient.CloseUserStream(listenKey).Result;
+            var userStreamInfo = await binanceClient.StartUserStream();
+            var listenKey = userStreamInfo.ListenKey;
+            var result = await binanceClient.CloseUserStream(listenKey);
         }
         private void DepthHandler(DepthMessage messageData)
         {

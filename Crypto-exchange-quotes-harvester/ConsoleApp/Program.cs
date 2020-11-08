@@ -17,36 +17,21 @@ namespace ConsoleApp
         {
             IAccessKeys keys = new AccessKeys();
             IApiClient api = new ApiClient(keys.ApiKey, keys.ApiSecretKey);
-            IBinanceClient binanceClient = new BinanceClient(api);
-            var userStreamInfo = await binanceClient.StartUserStream();
-            var listenerKey = userStreamInfo.ListenKey;
+            IBinanceMarketInfo getBinanceMarketInfo = new BinanceMarketInfo(new BinanceClient(api));
+            var streamInfo = await getBinanceMarketInfo.BinanceClient.StartUserStream();
+            var listenKey = streamInfo.ListenKey;
             bool loop = true;
             while (loop)
             {
-                var orderBookList = await binanceClient.GetOrderBookTicker();
-                var marketInfo = orderBookList.ToList();
-                for (int i = 0; i < marketInfo.Count(); i++)
+                await getBinanceMarketInfo.GetBinanceMarketInfo();
+                var input = Console.ReadKey().KeyChar;
+                if (input == 'a')
                 {
-                    if (marketInfo[i].Symbol == "ETHBTC")
-                    {
-                        Console.WriteLine(marketInfo[i].AskPrice);
-                        Console.WriteLine(marketInfo[i].BidPrice);
-                        Console.WriteLine(marketInfo[i].Symbol);
-                        var input = Console.ReadKey().KeyChar;
-                        if (input == 'q')
-                        {
-                            break;
-                        }
-
-                        if (input == 'a')
-                        {
-                            loop = false;
-                        }
-                    }
+                    loop = false;
                 }
             }
 
-            await binanceClient.CloseUserStream(listenerKey);
+            await getBinanceMarketInfo.BinanceClient.CloseUserStream(listenKey);
         }
     }
 }

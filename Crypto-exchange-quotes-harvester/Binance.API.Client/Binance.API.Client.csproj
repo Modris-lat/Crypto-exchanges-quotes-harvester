@@ -47,7 +47,9 @@
     <Compile Include="AccessKeys.cs" />
     <Compile Include="BinanceClient.cs" />
     <Compile Include="BinanceClientAbstract.cs" />
-    <Compile Include="IBinanceClient.cs" />
+    <Compile Include="BinanceMarketInfo.cs" />
+    <Compile Include="Interfaces\IBinanceClient.cs" />
+    <Compile Include="Interfaces\IBinanceMarketInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserStreamInfo.cs" />
   </ItemGroup>

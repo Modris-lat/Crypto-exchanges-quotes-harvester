@@ -6,6 +6,6 @@
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=90117757_002D41e9_002D497c_002Da5b3_002D61859c3001d0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestConnectivity #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Binance.API.Csharp.Client.Test.BinanceTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.Binance.BinanceTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
