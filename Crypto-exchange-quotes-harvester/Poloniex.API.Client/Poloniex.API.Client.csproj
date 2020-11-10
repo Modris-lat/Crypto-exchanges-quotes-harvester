@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPoloniexClient.cs" />
+    <Compile Include="Modules\AccessKeysPoloniex.cs" />
+    <Compile Include="API\PoloniexApiClient.cs" />
+    <Compile Include="EndpointsPoloniex.cs" />
+    <Compile Include="Interfaces\IAccessKeysPoloniex.cs" />
+    <Compile Include="Interfaces\IPoloniexApiClient.cs" />
+    <Compile Include="Interfaces\IPoloniexClient.cs" />
+    <Compile Include="Modules\CurrencyPair.cs" />
+    <Compile Include="Modules\PoloniexMarketData.cs" />
+    <Compile Include="Modules\RootObject.cs" />
+    <Compile Include="PoloniexClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +61,12 @@
       <Project>{8d0114c8-c41c-41a2-8064-ce8e6a5d3c26}</Project>
       <Name>Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

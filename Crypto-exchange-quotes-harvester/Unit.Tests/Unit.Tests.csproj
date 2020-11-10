@@ -50,15 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinanceTest.cs" />
+    <Compile Include="PoloniexTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Binance\" />
-    <Folder Include="Poloniex\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Binance.API.Client\Binance.API.Client.csproj">
       <Project>{575acbef-56a8-4bdb-8b66-d9ea7c17ea5a}</Project>
