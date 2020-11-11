@@ -1,9 +1,7 @@
-﻿using System;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Poloniex.API.Client;
-using Poloniex.API.Client.API;
-using Poloniex.API.Client.Interfaces;
 
 namespace Unit.Tests
 {
@@ -19,7 +17,8 @@ namespace Unit.Tests
         [TestMethod]
         public async Task GetOrderBook()
         {
-            //var result = await poloniexClient.GetOrderBookTicker();
+            var result = await poloniexClient.GetOrderBookTicker();
+            Assert.IsTrue(result.Any());
         }
     }
 }

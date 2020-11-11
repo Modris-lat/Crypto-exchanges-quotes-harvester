@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using Binance.API.Client;
 using Core;
 using Core.Interfaces;
-using Core.Modules.Enums;
-using Core.Modules.WebSockets;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Poloniex.API.Client;
-using Poloniex.API.Client.API;
-using Poloniex.API.Client.Interfaces;
-using Poloniex.API.Client.Modules;
 
 namespace ConsoleApp
 {

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Binance.API.Client.Modules.Enums;
 using Core.Modules.WebSockets;
-using WebSocketSharp;
 
 namespace Core.Interfaces
 {

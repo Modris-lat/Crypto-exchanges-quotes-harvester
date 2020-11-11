@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poloniex.API.Client.Interfaces
+namespace Core.Models
 {
-    public interface IPoloniexApiClient
+    public class MessageLog
     {
-        Task<string> CallAsync();
+        public int Id { get; set; }
+        public string Message { get; set; }
     }
 }

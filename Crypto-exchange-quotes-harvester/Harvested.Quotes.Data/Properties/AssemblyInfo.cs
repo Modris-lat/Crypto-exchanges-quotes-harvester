@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Poloniex.API.Client")]
+[assembly: AssemblyTitle("Harvested.Quotes.Data")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Poloniex.API.Client")]
+[assembly: AssemblyProduct("Harvested.Quotes.Data")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e5591dc6-6c28-407f-a401-1ecd4f7a5b3d")]
+[assembly: Guid("fe94561a-b8a2-49fb-9069-ae0c00363f3a")]
 
 // Version information for an assembly consists of the following four values:
 //

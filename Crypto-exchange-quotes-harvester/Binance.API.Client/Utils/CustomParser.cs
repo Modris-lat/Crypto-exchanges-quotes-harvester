@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core.Modules.Market;
 using Core.Modules.WebSockets;
 using Newtonsoft.Json.Linq;
