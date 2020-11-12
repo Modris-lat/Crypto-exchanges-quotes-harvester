@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Core.Models;
+
+namespace Core.Interfaces
+{
+    public interface ISettingsConfig
+    {
+        string DbUrl { get; set; }
+        string DbUser { get; set; }
+        string DbPassword { get; set; }
+        string FlushPeriod { get; set; }
+        List<Instrument> Instruments { get; set; }
+        void ChooseSettings();
+    }
+}

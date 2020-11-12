@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -20,6 +21,11 @@ namespace Poloniex.API.Client
             {
                 var marketData = new PoloniexMarketData();
                 marketData.Symbol = o.Key;
+                if (o.Key.Contains("_"))
+                {
+                    var str = o.Key.Split('_');
+                    marketData.Symbol = str[0] + str[1];
+                }
                 var asksString = o.Value["asks"].ToString().Split('"')[1].Replace(".", ",");
                 marketData.AskPrice = decimal.Parse(asksString);
                 var bidsString = o.Value["bids"].ToString().Split('"')[1].Replace(".", ","); ;

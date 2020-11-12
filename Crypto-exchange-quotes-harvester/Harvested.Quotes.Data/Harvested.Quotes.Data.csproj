@@ -52,6 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IQuotesDBContext.cs" />
+    <Compile Include="Migrations\202011111239457_v1.cs" />
+    <Compile Include="Migrations\202011111239457_v1.designer.cs">
+      <DependentUpon>202011111239457_v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuotesDBContext.cs" />
   </ItemGroup>
@@ -64,6 +69,11 @@
       <Project>{8d0114c8-c41c-41a2-8064-ce8e6a5d3c26}</Project>
       <Name>Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202011111239457_v1.resx">
+      <DependentUpon>202011111239457_v1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -10,10 +10,11 @@ namespace Unit.Tests
     {
         private IPoloniexClient poloniexClient;
 
-        PoloniexTest()
+        public PoloniexTest()
         {
             poloniexClient = new PoloniexClient();
         }
+
         [TestMethod]
         public async Task GetOrderBook()
         {

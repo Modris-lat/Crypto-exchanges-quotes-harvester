@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Binance.API.Client;
 using Core;
@@ -7,7 +9,7 @@ using Core.Interfaces;
 using Core.Models;
 using Poloniex.API.Client;
 
-namespace ConsoleApp
+namespace Quotes.Harvester.Console
 {
     class Program
     {
@@ -19,6 +21,7 @@ namespace ConsoleApp
             IPoloniexClient poloniexClient = new PoloniexClient();
             ISettingsConfig settings = new DataBaseSettings();
             settings.ChooseSettings();
+            var collectedQuotes = new List<Quote>();
             var streamInfo = await binanceClient.StartUserStream();
             var listenKey = streamInfo.ListenKey;
             bool loop = true;
@@ -32,10 +35,16 @@ namespace ConsoleApp
                     {
                         if (currencyOrderList[i].Symbol == settings.Instruments[j].Symbol)
                         {
-                            Console.WriteLine("Binance market:");
-                            Console.WriteLine(currencyOrderList[i].Symbol);
-                            Console.WriteLine(currencyOrderList[i].AskPrice);
-                            Console.WriteLine(currencyOrderList[i].BidPrice);
+                            var quote = new Quote
+                            {
+                                Id = collectedQuotes.Count,
+                                Name = settings.Instruments[j].Symbol,
+                                Time = DateTime.Now.ToLongDateString(),
+                                Bid = currencyOrderList[i].BidPrice,
+                                Ask = currencyOrderList[i].AskPrice,
+                                Exchange = "Binance"
+                            };
+                            collectedQuotes.Add(quote);
                         }
                     }
                 }
@@ -47,15 +56,21 @@ namespace ConsoleApp
                     {
                         if (poloniexList[i].Symbol == settings.Instruments[j].Symbol)
                         {
-                            Console.WriteLine("Poloniex market:");
-                            Console.WriteLine($"{poloniexList[i].Symbol}");
-                            Console.WriteLine($"{poloniexList[i].AskPrice}");
-                            Console.WriteLine($"{poloniexList[i].BidPrice}");
-                            Console.WriteLine($"{poloniexList[i].IsFrozen}");
+                            var quote = new Quote
+                            {
+                                Id = collectedQuotes.Count,
+                                Name = settings.Instruments[j].Symbol,
+                                Time = DateTime.Now.ToLongDateString(),
+                                Bid = poloniexList[i].BidPrice,
+                                Ask = poloniexList[i].AskPrice,
+                                Exchange = "Poloniex"
+                            };
+                            collectedQuotes.Add(quote);
                         }
                     }
                 }
-                var input = Console.ReadKey().KeyChar;
+                System.Console.WriteLine(collectedQuotes.Count);
+                var input = System.Console.ReadKey().KeyChar;
                 if (input == 'q')
                 {
                     loop = false;
