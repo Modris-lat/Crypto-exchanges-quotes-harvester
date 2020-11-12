@@ -58,58 +58,29 @@ namespace Unit.Tests.Binance
             var listenKey = userStreamInfo.ListenKey;
             var result = await binanceClient.CloseUserStream(listenKey);
         }
-        private void DepthHandler(DepthMessage messageData)
-        {
-            var depthData = messageData;
-        }
-
         [TestMethod]
-        public void TestDepthEndpoint()
+        public async Task GetOrderBookTickerBTCUSDT()
         {
-            binanceClient.ListenDepthEndpoint("ethbtc", DepthHandler);
-            Thread.Sleep(50000);
-        }
-        private void KlineHandler(KlineMessage messageData)
-        {
-            var klineData = messageData;
+            var result = await binanceClient.GetOrderBookTicker();
+            var instrument = result.SingleOrDefault(o =>
+                o.Symbol == "BTCUSDT");
+            Assert.IsTrue(instrument.Symbol == "BTCUSDT");
         }
         [TestMethod]
-        public void TestKlineEndpoint()
+        public async Task GetOrderBookTickerUSDTBTC()
         {
-            binanceClient.ListenKlineEndpoint("ethbtc", TimeInterval.Minutes_1, KlineHandler);
-            Thread.Sleep(50000);
+            var result = await binanceClient.GetOrderBookTicker();
+            var instrument = result.SingleOrDefault(o =>
+                o.Symbol == "USDTBTC");
+            Assert.IsTrue(instrument == null);
         }
-        private void AggregateTradesHandler(AggregateTradeMessage messageData)
-        {
-            var aggregateTrades = messageData;
-        }
-
         [TestMethod]
-        public void AggregateTestTradesEndpoint()
+        public async Task GetOrderBookTickerETHUSDT()
         {
-            binanceClient.ListenTradeEndpoint("ethbtc", AggregateTradesHandler);
-            Thread.Sleep(50000);
-        }
-        private void AccountHandler(AccountUpdatedMessage messageData)
-        {
-            var accountData = messageData;
-        }
-
-        private void TradesHandler(OrderOrTradeUpdatedMessage messageData)
-        {
-            var tradesData = messageData;
-        }
-
-        private void OrdersHandler(OrderOrTradeUpdatedMessage messageData)
-        {
-            var ordersData = messageData;
-        }
-
-        [TestMethod]
-        public void TestUserDataEndpoint()
-        {
-            binanceClient.ListenUserDataEndpoint(AccountHandler, TradesHandler, OrdersHandler);
-            Thread.Sleep(50000);
+            var result = await binanceClient.GetOrderBookTicker();
+            var instrument = result.SingleOrDefault(o =>
+                o.Symbol == "ETHUSDT");
+            Assert.IsTrue(instrument.Symbol == "ETHUSDT");
         }
     }
 }

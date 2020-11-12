@@ -9,9 +9,6 @@ namespace Core.Interfaces
 {
     public interface ISettingsConfig
     {
-        string DbUrl { get; set; }
-        string DbUser { get; set; }
-        string DbPassword { get; set; }
         string FlushPeriod { get; set; }
         List<Instrument> Instruments { get; set; }
         void ChooseSettings();

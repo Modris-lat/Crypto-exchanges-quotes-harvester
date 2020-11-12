@@ -13,9 +13,6 @@ namespace Core.Models
         {
             Instruments = new List<Instrument>(){};
         }
-        public string DbUrl { get; set; }
-        public string DbUser { get; set; }
-        public string DbPassword { get; set; }
         public string FlushPeriod { get; set; }
         public List<Instrument> Instruments { get; set; }
 
@@ -29,10 +26,7 @@ namespace Core.Models
             }
             else
             {
-                DbUrl = "url";
-                DbUser = "user";
-                DbPassword = "123";
-                FlushPeriod = "period";
+                FlushPeriod = "10";
                 var instrument1 = new Instrument {Symbol = "BTCUSDT"};
                 Instruments.Add(instrument1);
                 var instrument2 = new Instrument {Symbol = "ETHUSDT"};
@@ -49,13 +43,7 @@ namespace Core.Models
         }
         private void SetSettings()
         {
-            Console.WriteLine("Enter data base url:");
-            DbUrl = Console.ReadLine();
-            Console.WriteLine("Enter user:");
-            DbUser = Console.ReadLine();
-            Console.WriteLine("Enter password:");
-            DbPassword = Console.ReadLine();
-            Console.WriteLine("Enter flush period:");
+            Console.WriteLine("Enter flush period in seconds:");
             FlushPeriod = Console.ReadLine();
             bool loop = true;
             while (loop)
