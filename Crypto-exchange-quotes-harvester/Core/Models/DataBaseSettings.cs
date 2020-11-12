@@ -60,18 +60,27 @@ namespace Core.Models
             bool loop = true;
             while (loop)
             {
-                Console.WriteLine("Enter instrument or press q to quit settings:");
+                Console.WriteLine("Enter instrument:");
                 var symbol = Console.ReadLine();
-                Console.WriteLine("Enter dependencies instruments(optional) or press q to quit");
-                var input = Console.ReadLine();
                 var instrument = new Instrument();
                 instrument.Symbol = symbol;
-                instrument.Depends.Add(input);
-                Instruments.Add(instrument);
+                Console.WriteLine(
+                    "(optional)Enter depends for synthetics, example 'XRPBTC XRPUSDT' and press q to quit or enter to continue:");
+                var input = Console.ReadLine();
                 if (input == "q")
                 {
                     loop = false;
                 }
+
+                if (input.Length > 2 && input.Contains(' '))
+                {
+                    var list = input.Split(' ');
+                    instrument.Depends.Add(list[0]);
+                    instrument.Depends.Add(list[1]);
+                    Console.WriteLine($"Dependencies count: {instrument.Depends.Count}");
+                }
+                Instruments.Add(instrument);
+                Console.WriteLine($"Instruments count: {Instruments.Count}");
             }
         }
     }

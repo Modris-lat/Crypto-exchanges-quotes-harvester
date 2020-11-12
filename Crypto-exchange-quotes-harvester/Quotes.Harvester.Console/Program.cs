@@ -7,6 +7,7 @@ using Binance.API.Client;
 using Core;
 using Core.Interfaces;
 using Core.Models;
+using Core.Modules.Market;
 using Poloniex.API.Client;
 
 namespace Quotes.Harvester.Console
@@ -35,16 +36,21 @@ namespace Quotes.Harvester.Console
                     {
                         if (currencyOrderList[i].Symbol == settings.Instruments[j].Symbol)
                         {
-                            var quote = new Quote
+                            var exists = collectedQuotes.Any(o =>
+                                o.Name == settings.Instruments[j].Symbol);
+                            if (!exists)
                             {
-                                Id = collectedQuotes.Count,
-                                Name = settings.Instruments[j].Symbol,
-                                Time = DateTime.Now.ToLongDateString(),
-                                Bid = currencyOrderList[i].BidPrice,
-                                Ask = currencyOrderList[i].AskPrice,
-                                Exchange = "Binance"
-                            };
-                            collectedQuotes.Add(quote);
+                                var quote = new Quote
+                                {
+                                    Id = collectedQuotes.Count,
+                                    Name = settings.Instruments[j].Symbol,
+                                    Time = DateTime.Now.ToString(),
+                                    Bid = currencyOrderList[i].BidPrice,
+                                    Ask = currencyOrderList[i].AskPrice,
+                                    Exchange = "Binance"
+                                };
+                                collectedQuotes.Add(quote);
+                            }
                         }
                     }
                 }
@@ -60,7 +66,7 @@ namespace Quotes.Harvester.Console
                             {
                                 Id = collectedQuotes.Count,
                                 Name = settings.Instruments[j].Symbol,
-                                Time = DateTime.Now.ToLongDateString(),
+                                Time = DateTime.Now.ToString(),
                                 Bid = poloniexList[i].BidPrice,
                                 Ask = poloniexList[i].AskPrice,
                                 Exchange = "Poloniex"
@@ -69,7 +75,8 @@ namespace Quotes.Harvester.Console
                         }
                     }
                 }
-                System.Console.WriteLine(collectedQuotes.Count);
+                System.Console.WriteLine(
+                    $"Quotes count: {collectedQuotes.Count}. Press q to quit or any other to continue.");
                 var input = System.Console.ReadKey().KeyChar;
                 if (input == 'q')
                 {
