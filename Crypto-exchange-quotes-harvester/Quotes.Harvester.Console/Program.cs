@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Binance.API.Client;
+using Binance.API.Client.Interfaces;
+using Binance.API.Client.Service;
 using Core;
 using Core.Interfaces;
 using Core.Models;
@@ -25,10 +27,10 @@ namespace Quotes.Harvester.Console
             ISettingsConfig config = new SettingsConfig();
             IGetSearchInstruments getSearchList = new GetSearchInstruments();
             ICalculateSyntheticQuotes syntheticCalculator = new CalculateSyntheticQuotes();
+            IBinanceSearch searchMethod = new BinanceSearch(syntheticCalculator);
 
             var settings = config.ChooseSettings();
             var searchList = getSearchList.SearchInstrumentList(settings.Instruments);
-            var searchListCount = searchList.Count;
             var collectedQuotesBuffer = new List<Quote>();
             var collectedQuotesBufferForDataBase = new List<Quote>();
             var streamInfo = await binanceClient.StartUserStream();
@@ -39,52 +41,9 @@ namespace Quotes.Harvester.Console
             {
                 var binanceMarketInfo = await binanceClient.GetOrderBookTicker();
                 var poloniexMarketInfo = await poloniexClient.GetOrderBookTicker();
-                var binanceListCount = binanceMarketInfo.Count;
                 var ploniexListCount = poloniexMarketInfo.Count;
-                for (int i = 0; i < binanceListCount; i++)
-                {
-                    for (int j = 0; j < searchListCount; j++)
-                    {
-                        if (binanceMarketInfo[i].Symbol == searchList[j].Symbol &&
-                            (searchList[j].Synthetic1 == null ||
-                            searchList[j].Synthetic2 == null))
-                        {
-                            var exists = collectedQuotesBuffer.Any(o =>
-                                o.Name == searchList[j].Symbol);
-                            if (!exists)
-                            {
-                                var quote = new Quote
-                                {
-                                    Name = settings.Instruments[j].Symbol,
-                                    Time = DateTime.Now.ToString(),
-                                    Bid = binanceMarketInfo[i].BidPrice,
-                                    Ask = binanceMarketInfo[i].AskPrice,
-                                    Exchange = "Binance"
-                                };
-                                collectedQuotesBuffer.Add(quote);
-                                collectedQuotesBufferForDataBase.Add(quote);
-                            }
-                        }
-                        else if (searchList[j].Synthetic1 != null && searchList[j].Synthetic2 != null &&
-                                 (searchList[j].Synthetic1.SearchName == binanceMarketInfo[i].Symbol ||
-                                 searchList[j].Synthetic2.SearchName == binanceMarketInfo[i].Symbol)) 
-                        {
-                            synthList.Add(new Synthetic
-                            {
-                                Symbol = searchList[j].Symbol,
-                                Bid = binanceMarketInfo[i].BidPrice,
-                                Ask = binanceMarketInfo[i].AskPrice,
-                                Exchange = "Binance"
-                            });
-                            if (synthList.Count == 2)
-                            {
-                                var quote = syntheticCalculator.Calculate(synthList, settings);
-                                collectedQuotesBuffer.Add(quote);
-                                collectedQuotesBufferForDataBase.Add(quote);
-                            }
-                        }
-                    }
-                }
+                var quotes = await searchMethod.Search(binanceMarketInfo, settings);
+
                 System.Console.WriteLine(
                     $"Quotes count: {collectedQuotesBuffer.Count}. Press q to quit or any other to continue.");
                 var input = System.Console.ReadKey().KeyChar;
