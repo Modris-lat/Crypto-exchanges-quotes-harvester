@@ -65,18 +65,20 @@ namespace Quotes.Harvester.Console
                                 collectedQuotesBufferForDataBase.Add(quote);
                             }
                         }
-                        else if (binanceMarketInfo[i].Symbol == searchList[j].Synthetic1.Symbol ||
-                                 binanceMarketInfo[i].Symbol == searchList[j].Synthetic2.Symbol)
+                        else if (searchList[j].Synthetic1 != null && searchList[j].Synthetic2 != null &&
+                                 (searchList[j].Synthetic1.SearchName == binanceMarketInfo[i].Symbol ||
+                                 searchList[j].Synthetic2.SearchName == binanceMarketInfo[i].Symbol)) 
                         {
                             synthList.Add(new Synthetic
                             {
-                                Symbol = binanceMarketInfo[i].Symbol,
+                                Symbol = searchList[j].Symbol,
                                 Bid = binanceMarketInfo[i].BidPrice,
-                                Ask = binanceMarketInfo[i].AskPrice
+                                Ask = binanceMarketInfo[i].AskPrice,
+                                Exchange = "Binance"
                             });
                             if (synthList.Count == 2)
                             {
-                                var quote = syntheticCalculator.Calculate(synthList);
+                                var quote = syntheticCalculator.Calculate(synthList, settings);
                                 collectedQuotesBuffer.Add(quote);
                                 collectedQuotesBufferForDataBase.Add(quote);
                             }
