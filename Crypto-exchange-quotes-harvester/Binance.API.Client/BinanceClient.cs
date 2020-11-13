@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Binance.API.Client.Modules;
 using Binance.API.Client.Modules.Enums;
@@ -22,11 +23,11 @@ namespace Binance.API.Client
             return result;
         }
         
-        public async Task<IEnumerable<OrderBookTicker>> GetOrderBookTicker()
+        public async Task<List<OrderBookTicker>> GetOrderBookTicker()
         {
             var result = await _apiClient.CallAsync<IEnumerable<OrderBookTicker>>(ApiMethod.GET, EndPoints.OrderBookTicker, false);
 
-            return result;
+            return result.ToList();
         }
 
         public async Task<UserStreamInfo> StartUserStream()
@@ -58,48 +59,6 @@ namespace Binance.API.Client
             var result = await _apiClient.CallAsync<dynamic>(ApiMethod.DELETE, EndPoints.CloseUserStream, false, $"listenKey={listenKey}");
 
             return result;
-        }
-
-        public void ListenDepthEndpoint(string symbol, ApiClientAbstract.MessageHandler<DepthMessage> depthHandler)
-        {
-            if (string.IsNullOrWhiteSpace(symbol))
-            {
-                throw new ArgumentException("symbol cannot be empty. ", "symbol");
-            }
-
-            var param = symbol + "@depth";
-            _apiClient.ConnectToWebSocket(param, depthHandler, true);
-        }
-
-        public void ListenKlineEndpoint(string symbol, TimeInterval interval, ApiClientAbstract.MessageHandler<KlineMessage> klineHandler)
-        {
-            if (string.IsNullOrWhiteSpace(symbol))
-            {
-                throw new ArgumentException("symbol cannot be empty. ", "symbol");
-            }
-
-            var param = symbol + $"@kline_{interval.GetDescription()}";
-            _apiClient.ConnectToWebSocket(param, klineHandler);
-        }
-
-        public void ListenTradeEndpoint(string symbol, ApiClientAbstract.MessageHandler<AggregateTradeMessage> tradeHandler)
-        {
-            if (string.IsNullOrWhiteSpace(symbol))
-            {
-                throw new ArgumentException("symbol cannot be empty. ", "symbol");
-            }
-
-            var param = symbol + "@aggTrade";
-            _apiClient.ConnectToWebSocket(param, tradeHandler);
-        }
-
-        public string ListenUserDataEndpoint(ApiClientAbstract.MessageHandler<AccountUpdatedMessage> accountInfoHandler, ApiClientAbstract.MessageHandler<OrderOrTradeUpdatedMessage> tradesHandler, ApiClientAbstract.MessageHandler<OrderOrTradeUpdatedMessage> ordersHandler)
-        {
-            var listenKey = StartUserStream().Result.ListenKey;
-
-            _apiClient.ConnectToUserDataWebSocket(listenKey, accountInfoHandler, tradesHandler, ordersHandler);
-
-            return listenKey;
         }
     }
 }

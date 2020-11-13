@@ -6,6 +6,6 @@ namespace Poloniex.API.Client
 {
     public interface IPoloniexClient
     {
-        Task<IEnumerable<PoloniexMarketData>> GetOrderBookTicker();
+        Task<List<PoloniexMarketData>> GetOrderBookTicker();
     }
 }

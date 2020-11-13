@@ -47,13 +47,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IGetSearchInstruments.cs" />
+    <Compile Include="Interfaces\ICalculateSyntheticQuotes.cs" />
     <Compile Include="Interfaces\ISettingsConfig.cs" />
+    <Compile Include="Models\SettingsModels\Depend.cs" />
+    <Compile Include="Models\SearchItems\SearchInstrument.cs" />
+    <Compile Include="Models\SearchItems\Synthetic.cs" />
+    <Compile Include="Services\CalculateSyntheticQuotes.cs" />
     <Compile Include="Services\ExtensionMethods.cs" />
-    <Compile Include="Models\DataBaseSettings.cs" />
-    <Compile Include="Models\Instrument.cs" />
+    <Compile Include="Models\SettingsModels\DataBaseSettings.cs" />
+    <Compile Include="Models\SettingsModels\Instrument.cs" />
     <Compile Include="Models\MessageLog.cs" />
     <Compile Include="Models\Quote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GetSearchInstruments.cs" />
+    <Compile Include="Services\SettingsConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

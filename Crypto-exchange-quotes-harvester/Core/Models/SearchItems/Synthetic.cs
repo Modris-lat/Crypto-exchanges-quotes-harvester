@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class Instrument
+    public class Synthetic
     {
-        public Instrument()
-        {
-            Depends = new List<string>(){};
-        }
+        public string SearchName { get; set; }
         public string Symbol { get; set; }
-        public List<string> Depends { get; set; }
+        public decimal Bid { get; set; }
+        public decimal Ask { get; set; }
     }
 }

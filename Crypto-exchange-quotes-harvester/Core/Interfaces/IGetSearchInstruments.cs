@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Models;
 
-namespace Core.Interfaces
+namespace Core
 {
-    public interface ISettingsConfig
+    public interface IGetSearchInstruments
     {
-        DataBaseSettings ChooseSettings();
+        List<SearchInstrument> SearchInstrumentList(List<Instrument> instruments);
     }
 }

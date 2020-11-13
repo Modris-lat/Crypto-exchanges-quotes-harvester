@@ -12,7 +12,7 @@ namespace Poloniex.API.Client
 {
     public class PoloniexClient: IPoloniexClient
     {
-        public async Task<IEnumerable<PoloniexMarketData>> GetOrderBookTicker()
+        public async Task<List<PoloniexMarketData>> GetOrderBookTicker()
         {
             var result = await CallAsync();
             JObject jobject = JObject.Parse(result);
@@ -33,12 +33,12 @@ namespace Poloniex.API.Client
                 marketData.IsFrozen = int.Parse(o.Value["isFrozen"].ToString());
                 list.Add(marketData);
             }
-            return list;
+            return list.ToList();
         }
         private async Task<string> CallAsync()
         {
             HttpClient poloniexClient = new HttpClient();
-            var response = await poloniexClient.GetAsync("https://poloniex.com/public?command=returnOrderBook&currencyPair=all&depth=1");
+            var response = await poloniexClient.GetAsync(EndpointsPoloniex.OrderBookEndpoint);
             if (response.IsSuccessStatusCode)
             {
                 response.EnsureSuccessStatusCode();

@@ -52,6 +52,8 @@
     <Compile Include="BinanceTest.cs" />
     <Compile Include="PoloniexTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchInstrumentsTest.cs" />
+    <Compile Include="TestCalculateSynthetics.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

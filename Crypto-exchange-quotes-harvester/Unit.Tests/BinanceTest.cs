@@ -82,5 +82,29 @@ namespace Unit.Tests.Binance
                 o.Symbol == "ETHUSDT");
             Assert.IsTrue(instrument.Symbol == "ETHUSDT");
         }
+        [TestMethod]
+        public async Task GetOrderBookTickerETHBTC()
+        {
+            var result = await binanceClient.GetOrderBookTicker();
+            var instrument = result.SingleOrDefault(o =>
+                o.Symbol == "ETHBTC");
+            Assert.IsTrue(instrument.Symbol == "ETHBTC");
+        }
+        [TestMethod]
+        public async Task GetOrderBookTickerXRPBTC()
+        {
+            var result = await binanceClient.GetOrderBookTicker();
+            var instrument = result.SingleOrDefault(o =>
+                o.Symbol == "XRPBTC");
+            Assert.IsTrue(instrument.Symbol == "XRPBTC");
+        }
+        [TestMethod]
+        public async Task GetOrderBookTickerXRPUSDT()
+        {
+            var result = await binanceClient.GetOrderBookTicker();
+            var instrument = result.SingleOrDefault(o =>
+                o.Symbol == "XRPUSDT");
+            Assert.IsTrue(instrument.Symbol == "XRPUSDT");
+        }
     }
 }

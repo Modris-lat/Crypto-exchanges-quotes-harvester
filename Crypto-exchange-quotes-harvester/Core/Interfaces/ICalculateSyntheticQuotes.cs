@@ -7,8 +7,8 @@ using Core.Models;
 
 namespace Core.Interfaces
 {
-    public interface ISettingsConfig
+    public interface ICalculateSyntheticQuotes
     {
-        DataBaseSettings ChooseSettings();
+        Quote Calculate(List<Synthetic> syntheticList);
     }
 }
