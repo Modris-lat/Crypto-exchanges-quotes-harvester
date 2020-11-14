@@ -1,10 +1,11 @@
 ﻿using System.Data.Entity;
+using System.Threading.Tasks;
 using Core.Models;
 using Harvested.Quotes.Data.Migrations;
 
 namespace Harvested.Quotes.Data
 {
-    public class QuotesDBContext: DbContext
+    public class QuotesDBContext: DbContext, IQuotesDBContext
     {
         public QuotesDBContext() : base("quotes-storage")
         {
