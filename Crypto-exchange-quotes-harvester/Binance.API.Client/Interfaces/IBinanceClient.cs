@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Binance.API.Client.Modules;
-using Core.Modules.Enums;
 using Core.Modules.Market;
-using Core.Modules.WebSockets;
 
 namespace Core.Interfaces
 {

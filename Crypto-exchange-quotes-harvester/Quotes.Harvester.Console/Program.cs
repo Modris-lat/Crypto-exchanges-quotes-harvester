@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Binance.API.Client;
 using Binance.API.Client.Interfaces;
 using Binance.API.Client.Service;
 using Core;
 using Core.Interfaces;
-using Core.Models;
-using Core.Modules.Market;
 using Core.Services;
 using Poloniex.API.Client;
 using Poloniex.API.Client.Interfaces;

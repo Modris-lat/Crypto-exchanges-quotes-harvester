@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using Core.Interfaces;
-using Core.Models;
 using Core.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

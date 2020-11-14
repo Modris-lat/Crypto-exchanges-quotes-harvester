@@ -4,11 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Binance.API.Client.Modules;
 using Binance.API.Client.Modules.Enums;
-using Core;
 using Core.Interfaces;
-using Core.Modules.Enums;
 using Core.Modules.Market;
-using Core.Modules.WebSockets;
 using Core.Utils;
 
 namespace Binance.API.Client

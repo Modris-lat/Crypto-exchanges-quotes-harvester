@@ -1,11 +1,13 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Binance.API.Client;
+using Binance.API.Client.Interfaces;
+using Binance.API.Client.Service;
 using Core;
 using Core.Interfaces;
-using Core.Modules.Enums;
-using Core.Modules.WebSockets;
+using Core.Models;
+using Core.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Unit.Tests.Binance
@@ -105,6 +107,64 @@ namespace Unit.Tests.Binance
             var instrument = result.SingleOrDefault(o =>
                 o.Symbol == "XRPUSDT");
             Assert.IsTrue(instrument.Symbol == "XRPUSDT");
+        }
+        [TestMethod]
+        public async Task SearchMethodBTCUSDT()
+        {
+            ICalculateSyntheticQuotes calculator = new CalculateSyntheticQuotes();
+            IBinanceSearch searchMethod = new BinanceSearch(calculator);
+            var searchList = new List<SearchInstrument>
+            {
+                new SearchInstrument
+                {
+                    Symbol = "BTCUSDT"
+                },
+            };
+            var result = await binanceClient.GetOrderBookTicker();
+            var quotesList = await searchMethod.Search(result, searchList);
+            Assert.IsTrue(quotesList[0].Name == "BTCUSDT");
+        }
+        [TestMethod]
+        public async Task SearchMethodBTCUSDTFalse()
+        {
+            ICalculateSyntheticQuotes calculator = new CalculateSyntheticQuotes();
+            IBinanceSearch searchMethod = new BinanceSearch(calculator);
+            var searchList = new List<SearchInstrument>
+            {
+                new SearchInstrument
+                {
+                    Symbol = "BTC/USDT"
+                },
+            };
+            var result = await binanceClient.GetOrderBookTicker();
+            var quotesList = await searchMethod.Search(result, searchList);
+            Assert.IsFalse(quotesList.Any());
+        }
+        [TestMethod]
+        public async Task SearchMethodBTCUSDTSynthetics()
+        {
+            ICalculateSyntheticQuotes calculator = new CalculateSyntheticQuotes();
+            IBinanceSearch searchMethod = new BinanceSearch(calculator);
+            var searchList = new List<SearchInstrument>
+            {
+                new SearchInstrument
+                {
+                    Symbol = "BTCUSDT",
+                    Synthetic1 = new Synthetic
+                    {
+                        SearchName = "ETHBTC",
+                        Symbol = "ETH/BTC"
+                    },
+                    Synthetic2 = new Synthetic
+                    {
+                        SearchName = "ETHUSDT",
+                        Symbol = "ETH/USDT"
+                    }
+                }
+            };
+            var result = await binanceClient.GetOrderBookTicker();
+            var quotesList = await searchMethod.Search(result, searchList);
+            Assert.IsTrue(quotesList[0].Name == "BTCUSDT" && quotesList[0].Exchange == "Binance");
         }
     }
 }
