@@ -16,5 +16,6 @@
     &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.SearchInstrumentsTest.TestMethod3&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.SearchInstrumentsTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.TestCalculateSynthetics.TestMethod2&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.TestCalculateSynthetics&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

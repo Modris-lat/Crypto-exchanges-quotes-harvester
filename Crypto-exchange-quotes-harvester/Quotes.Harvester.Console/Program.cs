@@ -13,6 +13,8 @@ using Core.Models;
 using Core.Modules.Market;
 using Core.Services;
 using Poloniex.API.Client;
+using Poloniex.API.Client.Interfaces;
+using Poloniex.API.Client.Service;
 
 namespace Quotes.Harvester.Console
 {
@@ -25,27 +27,27 @@ namespace Quotes.Harvester.Console
             IBinanceClient binanceClient = new BinanceClient(api);
             IPoloniexClient poloniexClient = new PoloniexClient();
             ISettingsConfig config = new SettingsConfig();
-            IGetSearchInstruments getSearchList = new GetSearchInstruments();
             ICalculateSyntheticQuotes syntheticCalculator = new CalculateSyntheticQuotes();
-            IBinanceSearch searchMethod = new BinanceSearch(syntheticCalculator);
+            IBinanceSearch binanceSearchMethod = new BinanceSearch(syntheticCalculator);
+            IGetSearchInstruments createSearchInstruments = new GetSearchInstruments();
+            IPoloniexSearch poloniexSearchMethod = new PoloniexSearch(syntheticCalculator);
 
             var settings = config.ChooseSettings();
-            var searchList = getSearchList.SearchInstrumentList(settings.Instruments);
-            var collectedQuotesBuffer = new List<Quote>();
-            var collectedQuotesBufferForDataBase = new List<Quote>();
+            var searchList = createSearchInstruments.SearchInstrumentList(settings.Instruments);
             var streamInfo = await binanceClient.StartUserStream();
             var listenKey = streamInfo.ListenKey;
-            var synthList = new List<Synthetic> { };
 
             while (true)
             {
+                System.Console.WriteLine("Getting data...");
                 var binanceMarketInfo = await binanceClient.GetOrderBookTicker();
                 var poloniexMarketInfo = await poloniexClient.GetOrderBookTicker();
-                var ploniexListCount = poloniexMarketInfo.Count;
-                var quotes = await searchMethod.Search(binanceMarketInfo, settings);
+                var quotesBinance = await binanceSearchMethod.Search(binanceMarketInfo, searchList);
+                var quotesPoloniex = await poloniexSearchMethod.Search(poloniexMarketInfo, searchList);
 
+                System.Console.WriteLine($"Poloniex quotes count {quotesPoloniex.Count}");
                 System.Console.WriteLine(
-                    $"Quotes count: {collectedQuotesBuffer.Count}. Press q to quit or any other to continue.");
+                    $"Binance quotes count: {quotesBinance.Count}. Press q to quit or any other to continue.");
                 var input = System.Console.ReadKey().KeyChar;
                 if (input == 'q')
                 {

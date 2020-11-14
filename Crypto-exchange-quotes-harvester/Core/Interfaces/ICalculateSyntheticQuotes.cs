@@ -9,6 +9,6 @@ namespace Core.Interfaces
 {
     public interface ICalculateSyntheticQuotes
     {
-        Quote Calculate(List<Synthetic> syntheticList, DataBaseSettings settings);
+        decimal Calculate(decimal number1, decimal number2);
     }
 }

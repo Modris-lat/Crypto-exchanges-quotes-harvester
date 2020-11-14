@@ -10,6 +10,6 @@ namespace Binance.API.Client.Interfaces
 {
     public interface IBinanceSearch
     {
-        Task<List<Quote>> Search(List<OrderBookTicker> marketInfo, DataBaseSettings settings);
+        Task<List<Quote>> Search(List<OrderBookTicker> marketInfo, List<SearchInstrument> searchList);
     }
 }

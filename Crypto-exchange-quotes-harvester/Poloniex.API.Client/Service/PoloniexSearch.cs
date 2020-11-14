@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Binance.API.Client.Interfaces;
 using Core.Interfaces;
 using Core.Models;
-using Core.Modules.Market;
+using Poloniex.API.Client.Interfaces;
+using Poloniex.API.Client.Modules;
 
-namespace Binance.API.Client.Service
+namespace Poloniex.API.Client.Service
 {
-    public class BinanceSearch: IBinanceSearch
+    public class PoloniexSearch: IPoloniexSearch
     {
         private ICalculateSyntheticQuotes calculator;
-        public BinanceSearch(ICalculateSyntheticQuotes calculator)
+
+        public PoloniexSearch(ICalculateSyntheticQuotes calculator)
         {
             this.calculator = calculator;
         }
-        public Task<List<Quote>> Search(List<OrderBookTicker> marketInfo, List<SearchInstrument> searchList)
+        public Task<List<Quote>> Search(List<PoloniexMarketData> marketInfo, List<SearchInstrument> searchList)
         {
             var binanceListCount = marketInfo.Count;
             var searchListCount = searchList.Count;
@@ -36,7 +37,7 @@ namespace Binance.API.Client.Service
                             var quote = new Quote
                             {
                                 Name = searchList[j].Symbol,
-                                Exchange = "Binance",
+                                Exchange = "Poloniex",
                                 Time = DateTime.Now.ToString(),
                                 Bid = marketInfo[i].BidPrice,
                                 Ask = marketInfo[i].AskPrice
@@ -50,14 +51,15 @@ namespace Binance.API.Client.Service
                                 var synthetic = marketInfo[i];
                                 searchList[j].Synthetic1.Ask = synthetic.AskPrice;
                                 searchList[j].Synthetic1.Bid = synthetic.BidPrice;
-                                searchList[j].Synthetic1.Exchange = "Binance";
+                                searchList[j].Synthetic1.Exchange = "Poloniex";
                             }
+
                             if (searchList[j].Synthetic2.SearchName == marketInfo[i].Symbol)
                             {
                                 var synthetic = marketInfo[i];
                                 searchList[j].Synthetic2.Ask = synthetic.AskPrice;
                                 searchList[j].Synthetic2.Bid = synthetic.BidPrice;
-                                searchList[j].Synthetic2.Exchange = "Binance";
+                                searchList[j].Synthetic2.Exchange = "Poloniex";
                             }
 
                             if (searchList[j].Synthetic1.Ask > 0 && searchList[j].Synthetic2.Ask > 0)
@@ -68,7 +70,7 @@ namespace Binance.API.Client.Service
                                 var quote = new Quote
                                 {
                                     Name = synthetic.Symbol,
-                                    Exchange = "Binance",
+                                    Exchange = "Poloniex",
                                     Time = DateTime.Now.ToString(),
                                     Bid = bid,
                                     Ask = ask
@@ -79,6 +81,7 @@ namespace Binance.API.Client.Service
                     }
                 }
             }
+
             return Task.FromResult(quoteList);
         }
     }
