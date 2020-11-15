@@ -23,8 +23,7 @@ namespace Poloniex.API.Client
                 marketData.Symbol = o.Key;
                 if (o.Key.Contains("_"))
                 {
-                    var str = o.Key.Split('_');
-                    marketData.Symbol = str[0] + str[1];
+                    marketData.Symbol = o.Key.Replace("_", "");
                 }
                 var asksString = o.Value["asks"].ToString().Split('"')[1].Replace(".", ",");
                 marketData.AskPrice = decimal.Parse(asksString);

@@ -45,18 +45,36 @@ namespace Quotes.Harvester.Console
             while (true)
             {
                 System.Console.WriteLine("Getting data...");
-                var binanceMarketInfo = await binanceClient.GetOrderBookTicker();
-                var poloniexMarketInfo = await poloniexClient.GetOrderBookTicker();
-                var quotesBinance = await binanceSearchMethod.Search(binanceMarketInfo, searchList);
-                if (quotesBinance.Any())
+                try
                 {
-                    quotesBuffer.AddRange(quotesBinance);
+                    var binanceMarketInfo = await binanceClient.GetOrderBookTicker();
+                    var quotesBinance = await binanceSearchMethod.Search(binanceMarketInfo, searchList);
+                    if (quotesBinance.Any())
+                    {
+                        quotesBuffer.AddRange(quotesBinance);
+                    }
                 }
-                var quotesPoloniex = await poloniexSearchMethod.Search(poloniexMarketInfo, searchList);
-                if (quotesPoloniex.Any())
+                catch
                 {
-                    quotesBuffer.AddRange(quotesPoloniex);
+                    System.Console.WriteLine("Binance Server Error!");
+                    continue;
                 }
+
+                try
+                {
+                    var poloniexMarketInfo = await poloniexClient.GetOrderBookTicker();
+                    var quotesPoloniex = await poloniexSearchMethod.Search(poloniexMarketInfo, searchList);
+                    if (quotesPoloniex.Any())
+                    {
+                        quotesBuffer.AddRange(quotesPoloniex);
+                    }
+                }
+                catch
+                {
+                    System.Console.WriteLine("Poloniex Server Error!");
+                    continue;
+                }
+                
                 if (stopWatch.ElapsedMilliseconds >= settings.FlushPeriod)
                 {
                     await quotesStorage.SaveQuotes(quotesBuffer);
