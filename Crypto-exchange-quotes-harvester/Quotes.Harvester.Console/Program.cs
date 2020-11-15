@@ -5,6 +5,9 @@ using Binance.API.Client.Service;
 using Core;
 using Core.Interfaces;
 using Core.Services;
+using Harvested.Quotes.Data;
+using Harvested.Quotes.Data.Interfaces;
+using Harvested.Quotes.Data.Service;
 using Poloniex.API.Client;
 using Poloniex.API.Client.Interfaces;
 using Poloniex.API.Client.Service;
@@ -24,11 +27,14 @@ namespace Quotes.Harvester.Console
             IBinanceSearch binanceSearchMethod = new BinanceSearch(syntheticCalculator);
             IGetSearchInstruments createSearchInstruments = new GetSearchInstruments();
             IPoloniexSearch poloniexSearchMethod = new PoloniexSearch(syntheticCalculator);
+            IQuotesDBContext context = new QuotesDBContext();
+            IQuoteService quotesStorage = new QuotesService(context);
 
             var settings = config.ChooseSettings();
             var searchList = createSearchInstruments.SearchInstrumentList(settings.Instruments);
             var streamInfo = await binanceClient.StartUserStream();
             var listenKey = streamInfo.ListenKey;
+            await quotesStorage.ClearData();
 
             while (true)
             {
@@ -37,6 +43,8 @@ namespace Quotes.Harvester.Console
                 var poloniexMarketInfo = await poloniexClient.GetOrderBookTicker();
                 var quotesBinance = await binanceSearchMethod.Search(binanceMarketInfo, searchList);
                 var quotesPoloniex = await poloniexSearchMethod.Search(poloniexMarketInfo, searchList);
+                await quotesStorage.SaveQuotes(quotesBinance);
+                await quotesStorage.SaveQuotes(quotesPoloniex);
 
                 System.Console.WriteLine($"Poloniex quotes count {quotesPoloniex.Count}");
                 System.Console.WriteLine(

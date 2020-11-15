@@ -16,9 +16,19 @@ namespace Harvested.Quotes.Data.Service
         {
             _ctx = ctx;
         }
-        public Task SaveQuotes(List<Quote> quoteList)
+        public async Task SaveQuotes(List<Quote> quoteList)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < quoteList.Count; i++)
+            {
+                _ctx.Quotes.Add(quoteList[i]);
+                await _ctx.SaveChangesAsync();
+            }
+        }
+
+        public async Task ClearData()
+        {
+            _ctx.Quotes.RemoveRange(_ctx.Quotes);
+            await _ctx.SaveChangesAsync();
         }
     }
 }
