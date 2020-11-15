@@ -60,27 +60,30 @@ namespace Poloniex.API.Client.Service
                                 searchList[j].Synthetic2.Bid = synthetic.BidPrice;
                                 searchList[j].Synthetic2.Exchange = "Poloniex";
                             }
-
-                            if (searchList[j].Synthetic1.Ask > 0 && searchList[j].Synthetic2.Ask > 0)
-                            {
-                                var synthetic = searchList[j];
-                                var ask = calculator.Calculate(synthetic.Synthetic2.Ask, synthetic.Synthetic1.Ask);
-                                var bid = calculator.Calculate(synthetic.Synthetic2.Bid, synthetic.Synthetic1.Bid);
-                                var quote = new Quote
-                                {
-                                    Name = synthetic.Symbol,
-                                    Exchange = "Poloniex",
-                                    Time = DateTime.Now.ToString(),
-                                    Bid = bid,
-                                    Ask = ask
-                                };
-                                quoteList.Add(quote);
-                            }
                         }
                     }
                 }
             }
-
+            foreach (var item in searchList)
+            {
+                if (item.Synthetic1 != null && item.Synthetic2 != null)
+                {
+                    if (item.Synthetic1.Ask > 0 && item.Synthetic2.Ask > 0)
+                    {
+                        var ask = calculator.Calculate(item.Synthetic2.Ask, item.Synthetic1.Ask);
+                        var bid = calculator.Calculate(item.Synthetic2.Bid, item.Synthetic1.Bid);
+                        var quote = new Quote
+                        {
+                            Name = item.Symbol,
+                            Exchange = "Poloniex",
+                            Time = DateTime.Now.ToString(),
+                            Bid = bid,
+                            Ask = ask
+                        };
+                        quoteList.Add(quote);
+                    }
+                }
+            }
             return Task.FromResult(quoteList);
         }
     }

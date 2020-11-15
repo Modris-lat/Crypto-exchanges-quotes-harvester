@@ -24,16 +24,11 @@ namespace Core.Services
             else
             {
                 settings.FlushPeriod = 10000;
-                var instrument1 = new Instrument { Symbol = "BTC/USDT" };
+                var instrument1 = new Instrument { Symbol = "ETH/USDT" };
                 settings.Instruments.Add(instrument1);
-                var instrument2 = new Instrument { Symbol = "ETH/USDT" };
+                var instrument2 = new Instrument { Symbol = "USDT/BTC" };
+                instrument2.Depends = new Depend {Synthetic1 = "BTC/XRP", Synthetic2 = "USDT/XRP" };
                 settings.Instruments.Add(instrument2);
-                var instrument3 = new Instrument { Symbol = "BTC/USDT" };
-                instrument3.Depends = new Depend {Synthetic1 = "ETH/BTC", Synthetic2 = "ETH/USDT"};
-                settings.Instruments.Add(instrument3);
-                var instrument4 = new Instrument { Symbol = "BTC/USDT" };
-                instrument4.Depends = new Depend {Synthetic1 = "XRP/BTC", Synthetic2 = "XRP/USDT"};
-                settings.Instruments.Add(instrument4);
             }
 
             return settings;

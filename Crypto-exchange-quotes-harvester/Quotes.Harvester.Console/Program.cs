@@ -82,7 +82,7 @@ namespace Quotes.Harvester.Console
                 if (stopWatch.ElapsedMilliseconds >= settings.FlushPeriod)
                 {
                     await quotesStorage.SaveQuotes(quotesBuffer);
-                    stopWatch.Reset();
+                    stopWatch.Restart();
                     quotesBuffer.Clear();
                 }
 
