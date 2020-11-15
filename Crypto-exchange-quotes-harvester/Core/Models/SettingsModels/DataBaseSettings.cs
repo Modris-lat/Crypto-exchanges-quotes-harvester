@@ -8,7 +8,7 @@ namespace Core.Models
         {
             Instruments = new List<Instrument>(){};
         }
-        public string FlushPeriod { get; set; }
+        public long FlushPeriod { get; set; }
         public List<Instrument> Instruments { get; set; }
     }
 }

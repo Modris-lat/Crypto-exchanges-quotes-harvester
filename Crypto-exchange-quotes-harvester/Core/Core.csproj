@@ -50,6 +50,7 @@
     <Compile Include="Interfaces\IGetSearchInstruments.cs" />
     <Compile Include="Interfaces\ICalculateSyntheticQuotes.cs" />
     <Compile Include="Interfaces\ISettingsConfig.cs" />
+    <Compile Include="Models\SettingsModels\DefaultSettings.cs" />
     <Compile Include="Models\SettingsModels\Depend.cs" />
     <Compile Include="Models\SearchItems\SearchInstrument.cs" />
     <Compile Include="Models\SearchItems\Synthetic.cs" />

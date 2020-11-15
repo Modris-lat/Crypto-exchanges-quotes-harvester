@@ -23,7 +23,7 @@ namespace Core.Services
             }
             else
             {
-                settings.FlushPeriod = "10";
+                settings.FlushPeriod = 10000;
                 var instrument1 = new Instrument { Symbol = "BTC/USDT" };
                 settings.Instruments.Add(instrument1);
                 var instrument2 = new Instrument { Symbol = "ETH/USDT" };
@@ -40,8 +40,8 @@ namespace Core.Services
         }
         private void SetSettings()
         {
-            Console.WriteLine("Enter flush period in seconds:");
-            settings.FlushPeriod = Console.ReadLine();
+            Console.WriteLine("Enter flush period in milliseconds:");
+            settings.FlushPeriod = long.Parse(Console.ReadLine());
             while (true)
             {
                 Console.WriteLine("Enter instrument, example ETH/USDT or 'q' to quit settings:");
