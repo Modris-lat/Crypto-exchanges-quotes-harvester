@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace Quotes.Harvester.Console
             IPoloniexSearch poloniexSearchMethod = new PoloniexSearch(syntheticCalculator);
             IQuotesDBContext context = new QuotesDBContext();
             IQuoteService quotesStorage = new QuotesService(context);
+            ILogMessageService messageService = new LogMessageService(context);
 
             var stopWatch = new Stopwatch();
             var settings = config.ChooseSettings();
@@ -56,6 +58,7 @@ namespace Quotes.Harvester.Console
                 }
                 catch
                 {
+                    await messageService.SaveLogMessage(new MessageLog{Message = $"Binance server error {DateTime.Now}"});
                     System.Console.WriteLine("Binance Server Error!");
                     continue;
                 }
@@ -71,6 +74,7 @@ namespace Quotes.Harvester.Console
                 }
                 catch
                 {
+                    await messageService.SaveLogMessage(new MessageLog { Message = $"Poloniex server error {DateTime.Now}" });
                     System.Console.WriteLine("Poloniex Server Error!");
                     continue;
                 }

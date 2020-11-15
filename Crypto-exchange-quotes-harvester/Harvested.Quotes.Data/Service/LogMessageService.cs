@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Models;
 using Harvested.Quotes.Data.Interfaces;
 
 namespace Harvested.Quotes.Data.Service
@@ -15,9 +16,10 @@ namespace Harvested.Quotes.Data.Service
         {
             _ctx = ctx;
         }
-        public Task SaveLogMessage(string message)
+        public async Task SaveLogMessage(MessageLog message)
         {
-            throw new NotImplementedException();
+            _ctx.MessageLogs.Add(message);
+            await _ctx.SaveChangesAsync();
         }
     }
 }
