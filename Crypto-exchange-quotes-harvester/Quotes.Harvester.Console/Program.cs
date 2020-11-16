@@ -56,9 +56,9 @@ namespace Quotes.Harvester.Console
                         quotesBuffer.AddRange(quotesBinance);
                     }
                 }
-                catch
+                catch(Exception e)
                 {
-                    await messageService.SaveLogMessage(new MessageLog{Message = $"Binance server error {DateTime.Now}"});
+                    await messageService.SaveLogMessage(new MessageLog{Message = $"Binance server error: {e.Message} {DateTime.Now}"});
                     System.Console.WriteLine("Binance Server Error!");
                     continue;
                 }
@@ -72,9 +72,9 @@ namespace Quotes.Harvester.Console
                         quotesBuffer.AddRange(quotesPoloniex);
                     }
                 }
-                catch
+                catch(Exception e)
                 {
-                    await messageService.SaveLogMessage(new MessageLog { Message = $"Poloniex server error {DateTime.Now}" });
+                    await messageService.SaveLogMessage(new MessageLog { Message = $"Poloniex server error: {e.Message} {DateTime.Now}" });
                     System.Console.WriteLine("Poloniex Server Error!");
                     continue;
                 }

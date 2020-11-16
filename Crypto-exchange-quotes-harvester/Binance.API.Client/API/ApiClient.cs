@@ -6,6 +6,7 @@ using Binance.API.Client.Modules.Enums;
 using Core.Interfaces;
 using Core.Modules.WebSockets;
 using Core.Utils;
+using Harvested.Quotes.Data.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WebSocketSharp;
@@ -15,7 +16,7 @@ namespace Core
     public class ApiClient: ApiClientAbstract, IApiClient
     {
         public ApiClient(
-            string apiKey, string apiSecret, string apiUrl = @"https://www.binance.com",
+            string apiKey, string apiSecret, string apiUrl = @"https://www.binance.com", 
             string webSocketEndpoint = @"wss://stream.binance.com:9443/ws/", bool addDefaultHeaders = true)
             : base(apiKey, apiSecret, apiUrl, webSocketEndpoint, addDefaultHeaders) { }
         public async Task<T> CallAsync<T>(ApiMethod method, string endpoint, bool isSigned = false, string parameters = null)

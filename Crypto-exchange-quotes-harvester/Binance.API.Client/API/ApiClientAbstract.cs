@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using Harvested.Quotes.Data.Interfaces;
 using WebSocketSharp;
 
 namespace Core

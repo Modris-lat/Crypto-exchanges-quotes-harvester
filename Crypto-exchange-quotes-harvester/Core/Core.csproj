@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IGetSearchInstruments.cs" />
     <Compile Include="Interfaces\ICalculateSyntheticQuotes.cs" />
+    <Compile Include="Interfaces\IProcessResponse.cs" />
     <Compile Include="Interfaces\ISettingsConfig.cs" />
     <Compile Include="Models\SettingsModels\DefaultSettings.cs" />
     <Compile Include="Models\SettingsModels\Depend.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Models\Quote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GetSearchInstruments.cs" />
+    <Compile Include="Services\ProcessResponse.cs" />
     <Compile Include="Services\SettingsConfig.cs" />
   </ItemGroup>
   <ItemGroup>

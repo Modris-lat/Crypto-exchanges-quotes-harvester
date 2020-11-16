@@ -59,6 +59,10 @@
       <Project>{8d0114c8-c41c-41a2-8064-ce8e6a5d3c26}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Harvested.Quotes.Data\Harvested.Quotes.Data.csproj">
+      <Project>{fe94561a-b8a2-49fb-9069-ae0c00363f3a}</Project>
+      <Name>Harvested.Quotes.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
