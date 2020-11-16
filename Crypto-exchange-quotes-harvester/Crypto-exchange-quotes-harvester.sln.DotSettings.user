@@ -1,0 +1,21 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6e826d58_002Db90c_002D4af1_002Dadc1_002D2910c1c83863/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestConnectivity" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Binance.API.Csharp.Client.Test.BinanceTest.TestConnectivity&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=90117757_002D41e9_002D497c_002Da5b3_002D61859c3001d0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestConnectivity #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.Binance.BinanceTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.PoloniexTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.InputSettingsTest.TestChooseSettings&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.TestCalculateSynthetics.TestMethod1&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.SearchInstruments.TestMethod1&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.SearchInstruments.TestMethod2&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.SearchInstruments.TestMethod3&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.SearchInstrumentsTest.TestMethod3&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.SearchInstrumentsTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.TestCalculateSynthetics.TestMethod2&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::2CF045B2-C30E-45D6-93F5-4E446E534B97::.NETFramework,Version=v4.8::Unit.Tests.TestCalculateSynthetics&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

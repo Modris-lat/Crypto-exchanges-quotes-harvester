@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binance.API.Client", "Binance.API.Client\Binance.API.Client.csproj", "{575ACBEF-56A8-4BDB-8B66-D9EA7C17EA5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poloniex.API.Client", "Poloniex.API.Client\Poloniex.API.Client.csproj", "{E5591DC6-6C28-407F-A401-1ECD4F7A5B3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit.Tests", "Unit.Tests\Unit.Tests.csproj", "{2CF045B2-C30E-45D6-93F5-4E446E534B97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{8D0114C8-C41C-41A2-8064-CE8E6A5D3C26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvested.Quotes.Data", "Harvested.Quotes.Data\Harvested.Quotes.Data.csproj", "{FE94561A-B8A2-49FB-9069-AE0C00363F3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotes.Harvester.Console", "Quotes.Harvester.Console\Quotes.Harvester.Console.csproj", "{BF9C5446-7B0A-4E52-87A7-83ED734F6771}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{575ACBEF-56A8-4BDB-8B66-D9EA7C17EA5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{575ACBEF-56A8-4BDB-8B66-D9EA7C17EA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{575ACBEF-56A8-4BDB-8B66-D9EA7C17EA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{575ACBEF-56A8-4BDB-8B66-D9EA7C17EA5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5591DC6-6C28-407F-A401-1ECD4F7A5B3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5591DC6-6C28-407F-A401-1ECD4F7A5B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5591DC6-6C28-407F-A401-1ECD4F7A5B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5591DC6-6C28-407F-A401-1ECD4F7A5B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF045B2-C30E-45D6-93F5-4E446E534B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF045B2-C30E-45D6-93F5-4E446E534B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF045B2-C30E-45D6-93F5-4E446E534B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF045B2-C30E-45D6-93F5-4E446E534B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D0114C8-C41C-41A2-8064-CE8E6A5D3C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D0114C8-C41C-41A2-8064-CE8E6A5D3C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D0114C8-C41C-41A2-8064-CE8E6A5D3C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D0114C8-C41C-41A2-8064-CE8E6A5D3C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE94561A-B8A2-49FB-9069-AE0C00363F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE94561A-B8A2-49FB-9069-AE0C00363F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE94561A-B8A2-49FB-9069-AE0C00363F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE94561A-B8A2-49FB-9069-AE0C00363F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF9C5446-7B0A-4E52-87A7-83ED734F6771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF9C5446-7B0A-4E52-87A7-83ED734F6771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF9C5446-7B0A-4E52-87A7-83ED734F6771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF9C5446-7B0A-4E52-87A7-83ED734F6771}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2980462-8227-4139-81F2-E6DAFBC82B2D}
+	EndGlobalSection
+EndGlobal
