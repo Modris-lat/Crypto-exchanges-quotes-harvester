@@ -12,8 +12,7 @@ namespace Core.Services
             {
                 if (instruments[i].Depends == null)
                 {
-                    var instrument = new SearchInstrument { Symbol = instruments[i].Symbol.Replace("/", "" +
-                        "") };
+                    var instrument = new SearchInstrument { Symbol = instruments[i].Symbol.Replace("/", "") };
                     list.Add(instrument);
                 }
                 else

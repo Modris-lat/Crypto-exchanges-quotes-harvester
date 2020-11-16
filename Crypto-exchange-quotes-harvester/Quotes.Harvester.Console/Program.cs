@@ -87,7 +87,7 @@ namespace Quotes.Harvester.Console
                 }
 
                 System.Console.WriteLine(
-                    $"Binance quotes count: {quotesBuffer.Count}. Press q to quit or any other to continue.");
+                    $"Collected quotes count: {quotesBuffer.Count}. Press q to quit or any other to continue.");
                 var input = System.Console.ReadKey().KeyChar;
                 if (input == 'q')
                 {

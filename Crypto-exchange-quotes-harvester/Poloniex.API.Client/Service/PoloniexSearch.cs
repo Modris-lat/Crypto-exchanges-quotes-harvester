@@ -9,7 +9,7 @@ using Poloniex.API.Client.Modules;
 
 namespace Poloniex.API.Client.Service
 {
-    public class PoloniexSearch: IPoloniexSearch
+    public class PoloniexSearch : IPoloniexSearch
     {
         private ICalculateSyntheticQuotes calculator;
 
@@ -17,6 +17,7 @@ namespace Poloniex.API.Client.Service
         {
             this.calculator = calculator;
         }
+
         public Task<List<Quote>> Search(List<PoloniexMarketData> marketInfo, List<SearchInstrument> searchList)
         {
             var binanceListCount = marketInfo.Count;
@@ -33,14 +34,7 @@ namespace Poloniex.API.Client.Service
                         if (searchList[j].Synthetic1 == null && searchList[j].Synthetic2 == null &&
                             searchList[j].Symbol == marketInfo[i].Symbol)
                         {
-                            var quote = new Quote
-                            {
-                                Name = searchList[j].Symbol,
-                                Exchange = "Poloniex",
-                                Time = DateTime.Now.ToString(),
-                                Bid = marketInfo[i].BidPrice,
-                                Ask = marketInfo[i].AskPrice
-                            };
+                            var quote = CreateQuote(searchList[j].Symbol, marketInfo[i].BidPrice, marketInfo[i].AskPrice);
                             quoteList.Add(quote);
                         }
                         else if (searchList[j].Synthetic1 != null && searchList[j].Synthetic2 != null)
@@ -64,6 +58,7 @@ namespace Poloniex.API.Client.Service
                     }
                 }
             }
+
             foreach (var item in searchList)
             {
                 if (item.Synthetic1 != null && item.Synthetic2 != null)
@@ -72,19 +67,26 @@ namespace Poloniex.API.Client.Service
                     {
                         var ask = calculator.Calculate(item.Synthetic2.Ask, item.Synthetic1.Ask);
                         var bid = calculator.Calculate(item.Synthetic2.Bid, item.Synthetic1.Bid);
-                        var quote = new Quote
-                        {
-                            Name = item.Symbol,
-                            Exchange = "Poloniex",
-                            Time = DateTime.Now.ToString(),
-                            Bid = bid,
-                            Ask = ask
-                        };
+                        var quote = CreateQuote(item.Symbol, bid, ask);
                         quoteList.Add(quote);
                     }
                 }
             }
+
             return Task.FromResult(quoteList);
+        }
+
+        public Quote CreateQuote(string name, decimal bid, decimal ask)
+        {
+            var quote = new Quote
+            {
+                Name = name,
+                Exchange = "Poloniex",
+                Time = DateTime.Now.ToString(),
+                Bid = bid,
+                Ask = ask
+            };
+            return quote;
         }
     }
 }

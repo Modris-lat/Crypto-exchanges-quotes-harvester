@@ -47,7 +47,7 @@ namespace Unit.Tests
             var result = searchList.SearchInstrumentList(settingsList);
             Assert.IsTrue(
                 result[0].Symbol == "BTCUSDT" && result[0].Synthetic1 == null && result[0].Synthetic2 == null &&
-                result[1].Symbol == "BTC/USDT" && result[1].Synthetic1.Symbol == "ETH/BTC" &&
+                result[1].Symbol == "BTCUSDT" && result[1].Synthetic1.Symbol == "ETH/BTC" &&
                 result[1].Synthetic1.SearchName == "ETHBTC" && result[1].Synthetic2.SearchName == "ETHUSDT" &&
                 result[1].Synthetic2.Symbol == "ETH/USDT");
         }

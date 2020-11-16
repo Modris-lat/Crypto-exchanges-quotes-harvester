@@ -32,14 +32,7 @@ namespace Binance.API.Client.Service
                         if (searchList[j].Synthetic1 == null && searchList[j].Synthetic2 == null &&
                             searchList[j].Symbol == marketInfo[i].Symbol)
                         {
-                            var quote = new Quote
-                            {
-                                Name = searchList[j].Symbol,
-                                Exchange = "Binance",
-                                Time = DateTime.Now.ToString(),
-                                Bid = marketInfo[i].BidPrice,
-                                Ask = marketInfo[i].AskPrice
-                            };
+                            var quote = CreateQuote(searchList[j].Symbol, marketInfo[i].BidPrice, marketInfo[i].AskPrice);
                             quoteList.Add(quote);
                         }
                         else if (searchList[j].Synthetic1 != null && searchList[j].Synthetic2 != null)
@@ -71,19 +64,25 @@ namespace Binance.API.Client.Service
                     {
                         var ask = calculator.Calculate(item.Synthetic2.Ask, item.Synthetic1.Ask);
                         var bid = calculator.Calculate(item.Synthetic2.Bid, item.Synthetic1.Bid);
-                        var quote = new Quote
-                        {
-                            Name = item.Symbol,
-                            Exchange = "Binance",
-                            Time = DateTime.Now.ToString(),
-                            Bid = bid,
-                            Ask = ask
-                        };
+                        var quote = CreateQuote(item.Symbol, bid, ask);
                         quoteList.Add(quote);
                     }
                 }
             }
             return Task.FromResult(quoteList);
+        }
+
+        public Quote CreateQuote(string name, decimal bid, decimal ask)
+        {
+            var quote = new Quote
+            {
+                Name = name,
+                Exchange = "Binance",
+                Time = DateTime.Now.ToString(),
+                Bid = bid,
+                Ask = ask
+            };
+            return quote;
         }
     }
 }

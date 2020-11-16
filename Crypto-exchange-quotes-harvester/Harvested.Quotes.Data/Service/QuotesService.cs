@@ -21,8 +21,8 @@ namespace Harvested.Quotes.Data.Service
             for (int i = 0; i < quoteList.Count; i++)
             {
                 _ctx.Quotes.Add(quoteList[i]);
-                await _ctx.SaveChangesAsync();
             }
+            await _ctx.SaveChangesAsync();
         }
 
         public async Task ClearData()
