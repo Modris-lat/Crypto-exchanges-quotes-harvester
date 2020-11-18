@@ -11,3 +11,4 @@
 </p>
 <p>In the process log messages are created when server or application errors occur and stored in additional table</p>
 <p><strong>Api keys needs to be changed for different users</strong></p>
+<p>All unit tests must pass before starting application</p>
