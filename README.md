@@ -1,5 +1,5 @@
 # Crypto-exchanges-quotes-harvester
-<p>Console application for gathering market data from Binance and Poloniex crypto-exchanges.</p>
+<p>Console application for gathering market data from <strong>Binance</strong> and <strong>Poloniex</strong> crypto-exchanges.</p>
 <p>Data as quotes(with properties: symbol, bid, ask, exchange, time created) is stored on SQL Server.</p>
 <p>At the start of application settings menu appear where can shoose default settings or set new settings by choise.</p>
 <p>Settings menu:
