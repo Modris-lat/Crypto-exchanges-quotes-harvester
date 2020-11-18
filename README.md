@@ -4,9 +4,9 @@
 <p>At the start of application settings-menu appear where can choose default settings or set new settings by choise.</p>
 <p>Settings menu(default settings can be set, if the same values required for multiple app starts):
 <ul>
-  <li>Set flush-period. That is a time interval for data stored in database.</li>
-  <li>Set list of regular instruments to be stored.</li>
-  <li>(optional)Set list of synthetic instruments from which regular instruments are calculated in the process and stored. Synthetic input is case sensitive(instrument1 instrument2). Instrument2 will always be divided by instrument1. Correct input required.</li>
+  <li>Set flush-period (time interval for data stored in database)</li>
+  <li>Set list of regular instruments to be stored</li>
+  <li>(optional)Set list of synthetic instruments from which regular instruments are calculated in the process and stored. Synthetic input is case sensitive(instrument1 instrument2). Instrument2 will always be divided by instrument1. Correct input required</li>
 </ul>
 </p>
 <p>In the process log messages are created when server or application errors occur and stored in additional table</p>
