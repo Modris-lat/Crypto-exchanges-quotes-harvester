@@ -10,5 +10,4 @@
 </ul>
 </p>
 <p>In the process log messages are created when server or application errors occur and stored in additional table</p>
-<p><strong>Different Api keys required for different users</strong></p>
 <p>All unit tests must pass before starting application</p>
