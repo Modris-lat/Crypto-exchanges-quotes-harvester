@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Binance.API.Client.Interfaces;
-using Binance.API.Client.Service;
 using Core.Interfaces;
 using Core.Models;
 using Core.Services;

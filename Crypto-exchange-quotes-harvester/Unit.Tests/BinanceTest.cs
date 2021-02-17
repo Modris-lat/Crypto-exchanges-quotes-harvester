@@ -15,13 +15,11 @@ namespace Unit.Tests.Binance
     [TestClass]
     public class BinanceTest
     {
-        private IAccessKeys keys;
         private IApiClient apiClient;
         private IBinanceClient binanceClient;
         public BinanceTest()
         {
-            keys = new AccessKeys();
-            apiClient = new ApiClient(keys.ApiKey, keys.ApiSecretKey);
+            apiClient = new ApiClient(AccessKeys.ApiKeyBinance, AccessKeys.ApiSecretKeyBinance);
             binanceClient = new BinanceClient(apiClient);
         }
         [TestMethod]

@@ -6,7 +6,6 @@ using Binance.API.Client.Modules.Enums;
 using Core.Interfaces;
 using Core.Modules.WebSockets;
 using Core.Utils;
-using Harvested.Quotes.Data.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WebSocketSharp;

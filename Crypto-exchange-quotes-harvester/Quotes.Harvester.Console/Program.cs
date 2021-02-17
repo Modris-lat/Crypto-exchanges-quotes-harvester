@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Binance.API.Client;
 using Binance.API.Client.Interfaces;
-using Binance.API.Client.Service;
 using Core;
 using Core.Interfaces;
 using Core.Models;
-using Core.Services;
-using Harvested.Quotes.Data;
 using Harvested.Quotes.Data.Interfaces;
-using Harvested.Quotes.Data.Service;
 using Poloniex.API.Client;
 using Poloniex.API.Client.Interfaces;
-using Poloniex.API.Client.Service;
 
 namespace Quotes.Harvester.Console
 {
@@ -23,18 +17,14 @@ namespace Quotes.Harvester.Console
     {
         static async Task Main(string[] args)
         {
-            IAccessKeys keys = new AccessKeys();
-            IApiClient api = new ApiClient(keys.ApiKey, keys.ApiSecretKey);
-            IBinanceClient binanceClient = new BinanceClient(api);
-            IPoloniexClient poloniexClient = new PoloniexClient();
-            ISettingsConfig config = new SettingsConfig();
-            ICalculateSyntheticQuotes syntheticCalculator = new CalculateSyntheticQuotes();
-            IBinanceSearch binanceSearchMethod = new BinanceSearch(syntheticCalculator);
-            IGetSearchInstruments createSearchInstruments = new GetSearchInstruments();
-            IPoloniexSearch poloniexSearchMethod = new PoloniexSearch(syntheticCalculator);
-            IQuotesDBContext context = new QuotesDBContext();
-            IQuoteService quotesStorage = new QuotesService(context);
-            ILogMessageService messageService = new LogMessageService(context);
+            IBinanceClient binanceClient = DependencyFactory.CreateBinanceClient();
+            IPoloniexClient poloniexClient = DependencyFactory.CreatePoloniexClient();
+            ISettingsConfig config = DependencyFactory.CreateSettingsConfig();
+            IBinanceSearch binanceSearchMethod = DependencyFactory.CreateBinanceSearch();
+            IGetSearchInstruments createSearchInstruments = DependencyFactory.CreateSearchInstruments();
+            IPoloniexSearch poloniexSearchMethod = DependencyFactory.CreatePoloniexSearch();
+            IQuoteService quotesStorage = DependencyFactory.CreateQuoteService();
+            ILogMessageService messageService = DependencyFactory.CreateLogMessageService();
 
             var stopWatch = new Stopwatch();
             var settings = config.ChooseSettings();

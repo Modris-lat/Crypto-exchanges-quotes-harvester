@@ -48,13 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IBinanceSearch.cs" />
-    <Compile Include="Modules\AccessKeys.cs" />
     <Compile Include="API\ApiClient.cs" />
     <Compile Include="API\ApiClientAbstract.cs" />
     <Compile Include="Service\BinanceClient.cs" />
     <Compile Include="Modules\BinanceClientAbstract.cs" />
     <Compile Include="Interfaces\IBinanceClient.cs" />
-    <Compile Include="Interfaces\IAccessKeys.cs" />
     <Compile Include="Interfaces\IApiClient.cs" />
     <Compile Include="Modules\Enums\ApiMethods.cs" />
     <Compile Include="Modules\Enums\TimeInForce.cs" />

@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Threading.Tasks;
 using Core.Models;
 using Harvested.Quotes.Data.Migrations;
 

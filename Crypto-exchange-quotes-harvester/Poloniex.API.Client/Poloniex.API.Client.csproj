@@ -45,9 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IPoloniexSearch.cs" />
-    <Compile Include="Modules\AccessKeysPoloniex.cs" />
     <Compile Include="Modules\EndpointsPoloniex.cs" />
-    <Compile Include="Interfaces\IAccessKeysPoloniex.cs" />
     <Compile Include="Interfaces\IPoloniexClient.cs" />
     <Compile Include="Modules\PoloniexMarketData.cs" />
     <Compile Include="Service\PoloniexClient.cs" />
