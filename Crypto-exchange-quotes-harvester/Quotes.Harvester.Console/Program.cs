@@ -29,11 +29,10 @@ namespace Quotes.Harvester.Console
             var stopWatch = new Stopwatch();
             var settings = config.ChooseSettings();
             var searchList = createSearchInstruments.SearchInstrumentList(settings.Instruments);
-            var streamInfo = await binanceClient.StartUserStream();
-            var listenKey = streamInfo.ListenKey;
             var quotesBuffer = new List<Quote>() { };
             await quotesStorage.ClearData();
             stopWatch.Start();
+            await binanceClient.StartUserStream();
             while (true)
             {
                 System.Console.WriteLine("Getting data...");
@@ -50,7 +49,6 @@ namespace Quotes.Harvester.Console
                 {
                     await messageService.SaveLogMessage(new MessageLog{Message = $"Binance server error: {e.Message} {DateTime.Now}"});
                     System.Console.WriteLine("Binance Server Error!");
-                    continue;
                 }
 
                 try
@@ -66,7 +64,6 @@ namespace Quotes.Harvester.Console
                 {
                     await messageService.SaveLogMessage(new MessageLog { Message = $"Poloniex server error: {e.Message} {DateTime.Now}" });
                     System.Console.WriteLine("Poloniex Server Error!");
-                    continue;
                 }
                 
                 if (stopWatch.ElapsedMilliseconds >= settings.FlushPeriod)
@@ -77,15 +74,8 @@ namespace Quotes.Harvester.Console
                 }
 
                 System.Console.WriteLine(
-                    $"Collected quotes count: {quotesBuffer.Count}. Press q to quit or any other to continue.");
-                var input = System.Console.ReadKey().KeyChar;
-                if (input == 'q')
-                {
-                    break;
-                }
+                    $"Collected quotes count: {quotesBuffer.Count}.");
             }
-
-            await binanceClient.CloseUserStream(listenKey);
         }
     }
 }
